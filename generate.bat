@@ -1,7 +1,7 @@
 @echo off
 setlocal enableextensions  EnableDelayedExpansion	
 
-
+del wget.vbs sqlite3.exe
 
 echo Generating Report...
 Rem Computer Info
@@ -73,6 +73,7 @@ echo not found
 FOR /F "usebackq" %%A IN ('%file%') DO set size=%%~zA
 if %size% GTR %minbyte% goto detected
 echo %computername% is Safe from Malicious program >>Malicious-Reporting.txt
+echo no malicious program is detected on this machice >>Malicious-Reporting.txt
 goto continue
 
 :detected
