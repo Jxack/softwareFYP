@@ -1,0 +1,28 @@
+attach database 'pslist.db' as ps;
+attach database 'psxview.db' as psx;
+attach database 'netscan.db' as net;
+.output linking-process.txt
+.mode column
+.headers on
+Select psxview.name,psxview.pid,start,proto,state,localaddr,foreignaddr,created,pslist,psscan,pspcid,csrss,session,deskthrd,exittime from psx.psxview
+left join net.netscan on psxview.pid=netscan.pid
+left join ps.pslist on psxview.pid=pslist.pid;
+.output
+.output malicious-linking-process.txt
+.mode column
+.headers on
+Select psxview.name,psxview.pid,start,proto,state,localaddr,foreignaddr,created,pslist,psscan,pspcid,csrss,session,deskthrd,exittime from psx.psxview
+left join net.netscan on psxview.pid=netscan.pid
+left join ps.pslist on psxview.pid=pslist.pid
+where pslist="False" and psscan="True" and pspcid="True" and pspcid="True" and csrss="True";
+.output
+.output malicious-pid.txt
+.headers off
+Select pid from psxview
+where pslist="False" and psscan="True" and pspcid="True" and pspcid="True" and csrss="True";
+.output
+.output malicious-name.txt
+.headers off
+Select name from psxview
+where pslist="False" and psscan="True" and pspcid="True" and pspcid="True" and csrss="True";
+.output
