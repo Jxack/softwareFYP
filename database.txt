@@ -14,15 +14,15 @@ left join ps.pslist on psxview.pid=pslist.pid;
 Select psxview.name,psxview.pid,start,proto,state,localaddr,foreignaddr,created,pslist,psscan,pspcid,csrss,session,deskthrd,exittime from psx.psxview
 left join net.netscan on psxview.pid=netscan.pid
 left join ps.pslist on psxview.pid=pslist.pid
-where pslist="False" and psscan="True" and pspcid="True" and pspcid="True" and csrss="True";
+where pslist="False" and psscan="True" and pspcid="False" and pspcid="False" and csrss="False";
 .output
 .output malicious-pid.txt
 .headers off
 Select pid from psxview
-where pslist="False" and psscan="True" and pspcid="True" and pspcid="True" and csrss="True";
+where pslist="False" and psscan="True" and pspcid="False" and pspcid="False" and csrss="False";
 .output
 .output malicious-name.txt
 .headers off
 Select name from psxview
-where pslist="False" and psscan="True" and pspcid="True" and pspcid="True" and csrss="True";
+where pslist="False" and psscan="True" and pspcid="False" and pspcid="False" and csrss="False";
 .output
